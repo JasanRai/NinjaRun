@@ -10,9 +10,9 @@ Player::Player(std::string id)
 {
 	_speed = 0.1f;
 	
-	_translation = Vector_2D(0, 0);
+	_translation = Vector_2D(200,500);
 
-	_collider.set_radius(_width / 5.0f);
+	_collider.set_radius(_width / 2.0f);
 	_collider.set_translation(Vector_2D(_width / 2.0f, (float)_height));
 
 	_state.push(State::Idle);
@@ -35,6 +35,10 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 		{
 			push_state(State::Attack, assets);
 		}
+		else if (input->is_button_state(Input::Button::JUMP, Input::Button_State::PRESSED))
+		{
+			push_state(State::Jump, assets);
+		}
 		else if (_velocity.magnitude() > 0.0f)
 		{
 			push_state(State::Walking, assets);
@@ -54,6 +58,10 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 		 {
 			 push_state(State::Attack, assets);
 		 }
+		 else if (input->is_button_state(Input::Button::JUMP, Input::Button_State::PRESSED))
+		 {
+			 push_state(State::Jump, assets);
+		 }
 		
 		break;
 
@@ -67,6 +75,10 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 		{
 			push_state(State::Attack, assets);
 		}
+		else if (input->is_button_state(Input::Button::JUMP, Input::Button_State::PRESSED))
+		 {
+			 push_state(State::Jump, assets);
+		 }
 
 		break;
 
@@ -79,7 +91,29 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 		 {
 			 pop_state(assets);
 		 }
+		 else if (input->is_button_state(Input::Button::JUMP, Input::Button_State::PRESSED))
+		 {
+			 push_state(State::Jump, assets);
+		 }
 		
+		break;
+
+	case State::Jump:
+		if (_velocity.magnitude() == 0.0f)
+		{
+			pop_state(assets);
+		}
+		if (input->is_button_state(Input::Button::SLIDE, Input::Button_State::PRESSED))
+		{
+			push_state(State::Slide, assets);
+		}
+		else if (input->is_button_state(Input::Button::ATTACK, Input::Button_State::RELEASED))
+		{
+			pop_state(assets);
+		}
+		
+		
+
 		break;
 	}
 	_velocity = Vector_2D(0, 0);
@@ -108,17 +142,22 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 	{
 		_velocity += Vector_2D(0, 0);
 	}
+	if (input->is_button_state(Input::Button::JUMP, Input::Button_State::DOWN))
+	{
+		_velocity += Vector_2D(0, -10.0f);
+	}
+
 
 	_velocity.normalize();
 	_velocity.scale(_speed);
 }
 
-void Player::render(Uint32 milliseconds_to_simulate, Assets* assets , SDL_Renderer* renderer, Configuration* config)
+void Player::render(Uint32 milliseconds_to_simulate, Assets* assets , SDL_Renderer* renderer, Configuration* config, Scene* scene)
 {
 	animated_texture* texture = (animated_texture*)assets->get_asset(_texture_id);
 	texture->update_frame(milliseconds_to_simulate);
 
-	game_object::render(milliseconds_to_simulate, assets, renderer, config);
+	game_object::render(milliseconds_to_simulate, assets, renderer, config, scene);
 }
 
 void Player::set_speed(float speed)
@@ -186,6 +225,16 @@ void Player::handle_enter_state(State state, Assets* assets)
 		/*	const int running_channel = 2;
 			Sound* sound = (Sound*)assets->get_asset("Sound.running");
 			Mix_PlayChannel(running_channel, sound->data(), -1);*/
+			break;
+		}
+
+		case State::Jump:
+		{
+			_texture_id = "Texture.Ninja.jump";
+			_speed = 0.3f;
+			/*	const int running_channel = 2;
+				Sound* sound = (Sound*)assets->get_asset("Sound.running");
+				Mix_PlayChannel(running_channel, sound->data(), -1);*/
 			break;
 		}
 		

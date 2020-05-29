@@ -18,6 +18,7 @@ public:
 
 		SLIDE,
 		ATTACK,
+		JUMP,
 
 		SOUNDON,
 		SOUNDOFF,

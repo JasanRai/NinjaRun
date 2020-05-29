@@ -152,6 +152,7 @@
     <ClCompile Include="animated_texture.cpp" />
     <ClCompile Include="asset.cpp" />
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="background.cpp" />
     <ClCompile Include="Circle_2D.cpp" />
     <ClCompile Include="NinjaGirl.cpp" />
     <ClCompile Include="Editor.cpp" />
@@ -161,19 +162,17 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Portal_Entry.cpp" />
-    <ClCompile Include="Portal_Exit.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vector_2D.cpp" />
-    <ClCompile Include="NinjaGirl_running.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animated_texture.h" />
     <ClInclude Include="asset.h" />
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="background.h" />
     <ClInclude Include="Circle_2D.h" />
     <ClInclude Include="NinjaGirl.h" />
     <ClInclude Include="Editor.h" />
@@ -183,15 +182,12 @@
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Portal_Entry.h" />
-    <ClInclude Include="Portal_Exit.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vector_2D.h" />
-    <ClInclude Include="NinjaGirl_running.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc" />

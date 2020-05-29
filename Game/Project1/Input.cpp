@@ -97,6 +97,13 @@ void Input::get_input()
 					_button_state[Button::ATTACK] = Button_State::PRESSED;
 				}
 				break;
+			case SDL_SCANCODE_SPACE:
+				if (!is_button_state(Button::JUMP, Button_State::DOWN))
+				{
+					_button_state[Button::JUMP] = Button_State::PRESSED;
+				}
+				break;
+
 			}
 			break;
 		case SDL_KEYUP:
@@ -119,6 +126,9 @@ void Input::get_input()
 				break;
 			case SDL_SCANCODE_J:
 				_button_state[Button::ATTACK] = Button_State::RELEASED;
+				break;
+			case SDL_SCANCODE_SPACE:
+				_button_state[Button::JUMP] = Button_State::RELEASED;
 				break;
 			}
 			break;

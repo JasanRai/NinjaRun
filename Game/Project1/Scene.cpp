@@ -4,6 +4,7 @@
 #include <iostream>
 
 Scene::Scene(std::string id)
+	: _camera_translation(0.f, 0.f)
 {
 	_id = id;
 }
@@ -40,4 +41,9 @@ std::vector<game_object*> Scene::get_game_objects()
 std::string Scene::id()
 {
 	return _id;
+}
+
+Vector_2D Scene::camera_translation()
+{
+	return _camera_translation;
 }

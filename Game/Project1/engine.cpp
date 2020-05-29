@@ -160,27 +160,6 @@ void engine::render(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scen
 		/*dino* Dino = new dino("Dino");
 		Dino->render(milliseconds_to_simulate, assets, _renderer);*/
 	}
-	{
-		/*animated_texture* walking_dino = (animated_texture*)assets->get_asset("Texture.Dino.Walking");
-
-		walking_dino->update_frame(milliseconds_to_simulate);
-
-		SDL_Rect destination;
-		destination.x = 150;
-		destination.y = 50;
-		destination.w = 100;
-		destination.h = 100;
-		walking_dino->render(_renderer, nullptr, &destination, SDL_FLIP_NONE);*/
-
-		/*Walking_Dino* Dino = new Walking_Dino("DinoWalking");
-		Dino->render(milliseconds_to_simulate, assets, _renderer);*/
-
-	}
-	/*std::vector<game_object*> game_objects = scene->get_game_objects();
-	for (game_object* game_object : game_objects)
-	{
-		game_object->render(milliseconds_to_simulate, assets, _renderer);
-	}*/
 
 	std::vector<game_object*>sorted_game_objects = scene->get_game_objects();
 	const struct
@@ -194,7 +173,7 @@ void engine::render(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scen
 	std::sort(sorted_game_objects.begin(), sorted_game_objects.end(), sort_by_y_order);
 	for (game_object* game_object : sorted_game_objects)
 	{
-		game_object->render(milliseconds_to_simulate, assets, _renderer, config);
+		game_object->render(milliseconds_to_simulate, assets, _renderer, config, scene);
 	}
 
 	SDL_RenderPresent(_renderer);

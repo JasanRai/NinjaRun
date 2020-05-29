@@ -70,8 +70,6 @@ void Editor::update(Input* input, Scene*, Configuration*)
 	if (input->is_button_state(Input::Button::SOUNDOFF, Input::Button_State::PRESSED))
 	{
 		Mix_HaltChannel(0);
-		Mix_HaltChannel(1);
-		Mix_HaltChannel(2);
 	}
 	/*if (input->is_button_state(Input::Button::SOUNDON, Input::Button_State::PRESSED))
 	{

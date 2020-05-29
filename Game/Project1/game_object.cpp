@@ -61,12 +61,12 @@ void game_object::simulate_physics(Uint32 milliseconds_to_simulate, Assets*, Sce
 	}
 }
 
-void game_object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configuration* config)
+void game_object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configuration* config, Scene* scene)
 {
 
 	SDL_Rect destination;
-	destination.x = (int)_translation.x();
-	destination.y = (int)_translation.y();
+	destination.x = (int)(_translation.x() - scene->camera_translation().x());
+	destination.y = (int)(_translation.y() - scene->camera_translation().y());
 	destination.w = _width;
 	destination.h = _height;
 
@@ -87,7 +87,7 @@ void game_object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configu
 	texture->render(renderer, nullptr, &destination, _flip);
 
 
-	if (config->should_display_ids)
+	/*if (config->should_display_ids)
 	{
 		SDL_Color text_color;
 		text_color.r = 255;
@@ -97,7 +97,7 @@ void game_object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configu
 
 		Text id(renderer, _id.c_str(), text_color, "ID.Text");
 		id.render(renderer, _translation + Vector_2D((float)_width / 2, (float)_height));
-	}
+	}*/
 
 	if (config->should_display_colliders && _collider.radius() > 0.f)
 	{

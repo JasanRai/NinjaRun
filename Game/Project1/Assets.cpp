@@ -11,6 +11,10 @@ Assets::Assets(SDL_Renderer* renderer)
 		Texture* texture = new Texture("Texture.NinjaGirl", "../Assets/NinjaGirl/ninjagirl.png", renderer);
 		_assets[texture -> id()] = texture;
 	}
+	{
+		Texture* texture = new Texture("Texture.background", "../Assets/background.png", renderer);
+		_assets[texture->id()] = texture;
+	}
 
 	{
 		const int frame_count = 10;
@@ -39,6 +43,14 @@ Assets::Assets(SDL_Renderer* renderer)
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
+		asset* player_animated_texture = new animated_texture("Texture.Ninja.jump", "../Assets/Ninja/NinjaJump.png", renderer,
+			frame_count, frame_duration_milliseconds);
+		_assets[player_animated_texture->id()] = player_animated_texture;
+	}
+
+	{
+		const int frame_count = 10;
+		const Uint32 frame_duration_milliseconds = 100;
 		asset* player_animated_texture = new animated_texture("Texture.Ninja.idle", "../Assets/Ninja/NinjaIdle.png", renderer,
 			frame_count, frame_duration_milliseconds);
 		_assets[player_animated_texture->id()] = player_animated_texture;
@@ -59,7 +71,7 @@ Assets::Assets(SDL_Renderer* renderer)
 	}
 
 	{
-		Sound* sound = new Sound("Sound.music", "../Assets/Wavs/music.wav");
+		Sound* sound = new Sound("Sound.music", "../Assets/Wavs/back.wav");
 		_assets[sound-> id()] = sound;
 
 		Mix_PlayChannel(0, sound->data(), -1);
@@ -72,7 +84,7 @@ Assets::Assets(SDL_Renderer* renderer)
 	}
 
 	{
-		Sound* sound = new Sound("Sound.walking", "../Assets/Wavs/walking.wav");
+		Sound* sound = new Sound("Sound.walking", "../Assets/Wavs/slide.wav");
 		_assets[sound->id()] = sound;
 		
 	}

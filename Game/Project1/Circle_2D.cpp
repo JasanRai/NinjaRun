@@ -7,6 +7,8 @@ Circle_2D::Circle_2D(float radius, Vector_2D translation)
 	_radius = radius;
 }
 
+
+
 float Circle_2D::radius()
 {
 	return _radius;

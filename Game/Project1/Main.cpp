@@ -19,6 +19,8 @@ int main(void)
 	//{
 	//	eng->simulate();
 	//}*/
+
+
 	
 	Configuration* config = new Configuration();
 	engine* eng= new engine("Game", config);
@@ -40,6 +42,7 @@ int main(void)
 		Uint32 previous_frame_duration = frame_end_time_ms - frame_start_time_ms;
 		frame_start_time_ms = SDL_GetTicks();
 
+		game_scene->update(eng->window());
 		input->get_input();
 		editor->update(input, game_scene, config);
 		eng->simulate(previous_frame_duration, assets, game_scene, input, config);

@@ -9,6 +9,7 @@
 #include "Circle_2D.h"
 #include "Scene.h"
 
+
 class game_object
 {
 public :
@@ -19,7 +20,7 @@ public :
 
 	virtual void simulate_AI(Uint32 milliseconds_to_simulate, Assets* assets, Input* input, Scene* scene) = 0;
 	virtual void simulate_physics(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene);
-	virtual void render(Uint32 milliseconds_to_simulate, Assets* assets, SDL_Renderer* renderer, Configuration* config);
+	virtual void render(Uint32 milliseconds_to_simulate, Assets* assets, SDL_Renderer* renderer, Configuration* config, Scene* scene);
 
 	Vector_2D translation();
 	Circle_2D collider();

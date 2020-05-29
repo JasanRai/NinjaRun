@@ -63,16 +63,10 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Portal_Entry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Portal_Exit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NinjaGirl_running.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NinjaGirl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,16 +122,10 @@
     <ClInclude Include="Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Portal_Entry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Portal_Exit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NinjaGirl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NinjaGirl_running.h">
+    <ClInclude Include="background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
