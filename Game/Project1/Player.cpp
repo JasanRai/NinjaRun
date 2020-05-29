@@ -213,7 +213,7 @@ void Player::handle_enter_state(State state, Assets* assets)
 			_texture_id = "Texture.Ninja.slide";
 			_speed = 0.3f;
 			const int running_channel = 2;
-			Sound* sound = (Sound*)assets->get_asset("Sound.running");
+			Sound* sound = (Sound*)assets->get_asset("Sound.slide");
 			Mix_PlayChannel(running_channel, sound->data(), -1);
 			break;
 		}

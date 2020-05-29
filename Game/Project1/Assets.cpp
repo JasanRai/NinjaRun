@@ -78,13 +78,13 @@ Assets::Assets(SDL_Renderer* renderer)
 	}
 
 	{
-		Sound* sound = new Sound("Sound.running", "../Assets/Wavs/running.wav");
+		Sound* sound = new Sound("Sound.slide", "../Assets/Wavs/slide.wav");
 		_assets[sound->id()] = sound;
 		
 	}
 
 	{
-		Sound* sound = new Sound("Sound.walking", "../Assets/Wavs/slide.wav");
+		Sound* sound = new Sound("Sound.walking", "../Assets/Wavs/walking.wav");
 		_assets[sound->id()] = sound;
 		
 	}
