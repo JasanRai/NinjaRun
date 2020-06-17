@@ -1,9 +1,9 @@
 #pragma once
 
-#include "asset.h"
+#include "Asset.h"
 #include <SDL_mixer.h>
 
-class Sound : public asset
+class Sound : public Asset
 {
 public:
 	Sound(std::string id, std::string path);

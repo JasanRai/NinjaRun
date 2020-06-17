@@ -1,5 +1,5 @@
 #include "Editor.h"
-#include "resource.h"
+#include "Resource.h"
 #include "Player.h"
 
 #include "SDL.h"
@@ -65,18 +65,35 @@ INT_PTR CALLBACK Dialog_Proc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM)
 	return TRUE;
 }
 
-void Editor::update(Input* input, Scene*, Configuration*)
+void Editor::update(Input* input, Scene* scene, Configuration*) 
+	
 {
-	if (input->is_button_state(Input::Button::SOUNDOFF, Input::Button_State::PRESSED))
-	{
-		Mix_HaltChannel(0);
-	}
-	/*if (input->is_button_state(Input::Button::SOUNDON, Input::Button_State::PRESSED))
-	{
-		Sound* sound = new Sound("Sound.music", "../Assets/Wavs/music.wav");
-		_assets[sound->id()] = sound;
+		if (input->is_button_state(Input::Button::SOUNDOFF, Input::Button_State::PRESSED))
+		{
+			Mix_HaltChannel(0);
+		}
+		if (input->is_button_state(Input::Button::SOUNDON, Input::Button_State::PRESSED))
+		{
+			
+		}
 
-		Mix_PlayChannel(0, sound->data(), -1);
-	}*/
+		if (input->is_button_state(Input::Button::EASY, Input::Button_State::PRESSED))
+		{
+			NinjaGirl* ninjaGirl = (NinjaGirl*)scene->get_game_object("NinjaGirl");
+			ninjaGirl->set_speed(ninjaGirl->speed());
+
+			
+		}
+		if (input->is_button_state(Input::Button::NORMAL, Input::Button_State::PRESSED))
+		{
+			NinjaGirl* ninjaGirl = (NinjaGirl*)scene->get_game_object("NinjaGirl");
+			ninjaGirl->set_speed(ninjaGirl->speed() * 2);
+		}
+		if (input->is_button_state(Input::Button::HARD, Input::Button_State::PRESSED))
+		{
+			NinjaGirl* ninjaGirl = (NinjaGirl*)scene->get_game_object("NinjaGirl");
+			ninjaGirl->set_speed(ninjaGirl->speed() * 3);
+		}
+	
 	
 }

@@ -4,7 +4,7 @@
 #include <string>
 
 
-#include "input.h"
+#include "Input.h"
 #include "Scene.h"
 #include "NinjaGirl.h"
 

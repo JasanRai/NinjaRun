@@ -2,22 +2,28 @@
 #include "NinjaGirl.h"
 #include "Player.h"
 #include "Vector_2D.h"
-#include "game_object.h"
+#include "Game_Object.h"
 #include "Circle_2D.h"
-#include "background.h"
+#include "Background.h"
+
 
 
 Game_Scene::Game_Scene()
 	: Scene("Game")
+
+
 {
-	game_object* ninjagirl = new NinjaGirl("NinjaGirl");
+	Game_Object* ninjagirl = new NinjaGirl("NinjaGirl");
 	_game_objects[ninjagirl->id()] = ninjagirl;
 
-	game_object* player = new Player("Player");
+	Game_Object* player = new Player("Player");
 	_game_objects[player->id()] = player;
 
-	background* bg = new background("background");
+	Background* bg = new Background("background");
 	_game_objects[bg->id()] = bg;
+
+	
+
 	
 }
 
@@ -26,9 +32,9 @@ Game_Scene::~Game_Scene()
 }
 
 void Game_Scene::update(SDL_Window* window)
-{
-	//game_object* player = get_game_object("Player");
-	game_object* bg = get_game_object("background");
+{/*
+	Game_Object* player = get_game_object("Player");*/
+	Game_Object* bg = get_game_object("background");
 
 	int w, h;
 	

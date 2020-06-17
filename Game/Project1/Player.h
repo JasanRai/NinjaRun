@@ -1,12 +1,13 @@
 #pragma once
-#include "game_object.h"
+#include "Game_Object.h"
 #include <stack>
 
-class Player : public game_object
+class Player : public Game_Object
 {
 public : 
 	Player(std::string id);
 	~Player();
+	
 
 	virtual void simulate_AI(Uint32 milliseconds_to_simulate, Assets* assets, Input* input, Scene* scene)override;
 	virtual void render(Uint32 milliseconds_to_simulate, Assets* assets, SDL_Renderer* renderer, Configuration* config, Scene* scene)override;
@@ -30,6 +31,10 @@ public :
 private:
 	void handle_enter_state(State state, Assets* assets);
 	void handle_exit_state(State state, Assets* assets);
+
+	int jumpState; 
+	float fallingSpeed;
+	float jumpDistance;
 
 	float _speed;
 	std::stack<State> _state;

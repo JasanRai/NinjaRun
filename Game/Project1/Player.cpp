@@ -2,11 +2,12 @@
 #include "Circle_2D.h"
 #include "Assets.h"
 #include "Sound.h"
+#include "Game_Scene.h"
 
 #include <SDL_mixer.h>
 
 Player::Player(std::string id)
-	: game_object(id, "Texture.Ninja.walking")
+	: Game_Object(id, "Texture.Ninja.walking")
 {
 	_speed = 0.1f;
 	
@@ -16,6 +17,9 @@ Player::Player(std::string id)
 	_collider.set_translation(Vector_2D(_width / 2.0f, (float)_height));
 
 	_state.push(State::Idle);
+
+	this->fallingSpeed;
+	this->jumpDistance;
 }
 
 Player::~Player()
@@ -99,18 +103,11 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 		break;
 
 	case State::Jump:
-		if (_velocity.magnitude() == 0.0f)
+		/*if (input->is_button_state(Input::Button::JUMP, Input::Button_State::PRESSED))
 		{
-			pop_state(assets);
-		}
-		if (input->is_button_state(Input::Button::SLIDE, Input::Button_State::PRESSED))
-		{
-			push_state(State::Slide, assets);
-		}
-		else if (input->is_button_state(Input::Button::ATTACK, Input::Button_State::RELEASED))
-		{
-			pop_state(assets);
-		}
+			push_state(State::Jump, assets);
+		}*/
+		
 		
 		
 
@@ -120,15 +117,29 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 
 	if (input->is_button_state(Input::Button::RIGHT, Input::Button_State::DOWN))
 	{
-		_velocity += Vector_2D(1.0f, 0);
+		if (_translation.x() < 1300)
+		{
+			_velocity += Vector_2D(1.0f, 0);
+		}
+		else
+		{
+			_velocity += Vector_2D(0, 0);
+		}
 	}
 
 	if (input->is_button_state(Input::Button::LEFT, Input::Button_State::DOWN))
 	{
-		_velocity += Vector_2D(-1.0f, 0);
+		if (_translation.x() > 0)
+		{
+			_velocity += Vector_2D(-1.0f, 0);
+		}
+		else
+		{
+			_velocity += Vector_2D(0, 0);
+		}
 	}
 
-	if (input->is_button_state(Input::Button::UP, Input::Button_State::DOWN))
+	/*if (input->is_button_state(Input::Button::UP, Input::Button_State::DOWN))
 	{
 		_velocity += Vector_2D(0, -1.0f);
 	}
@@ -136,7 +147,7 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 	if (input->is_button_state(Input::Button::DOWN, Input::Button_State::DOWN))
 	{
 		_velocity += Vector_2D(0, 1.0f);
-	}
+	}*/
 
 	if (input->is_button_state(Input::Button::ATTACK, Input::Button_State::DOWN))
 	{
@@ -144,7 +155,12 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 	}
 	if (input->is_button_state(Input::Button::JUMP, Input::Button_State::DOWN))
 	{
-		_velocity += Vector_2D(0, -10.0f);
+		/*_velocity = Vector_2D(0, -100.0f);*/
+		jumpDistance = -16.f;
+		fallingSpeed = 5.f;
+		
+		
+
 	}
 
 
@@ -154,10 +170,10 @@ void Player::simulate_AI(Uint32 , Assets* assets, Input* input, Scene*)
 
 void Player::render(Uint32 milliseconds_to_simulate, Assets* assets , SDL_Renderer* renderer, Configuration* config, Scene* scene)
 {
-	animated_texture* texture = (animated_texture*)assets->get_asset(_texture_id);
+	Animated_Texture* texture = (Animated_Texture*)assets->get_asset(_texture_id);
 	texture->update_frame(milliseconds_to_simulate);
 
-	game_object::render(milliseconds_to_simulate, assets, renderer, config, scene);
+	Game_Object::render(milliseconds_to_simulate, assets, renderer, config, scene);
 }
 
 void Player::set_speed(float speed)

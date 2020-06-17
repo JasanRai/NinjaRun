@@ -1,17 +1,18 @@
 #include "background.h"
-#include "game_object.h"
+#include "Game_Object.h"
 
-background::background(std::string id)
-	: game_object(id, "Texture.background")
+
+Background::Background(std::string id)
+	: Game_Object(id, "Texture.background")
 {
 	_width = 1400;
 	_height = 800;
 }
 
-background::~background()
+Background::~Background()
 {
 }
 
-void background::simulate_AI(Uint32, Assets*, Input*, Scene*)
+void Background::simulate_AI(Uint32, Assets*, Input*, Scene*)
 {
 }

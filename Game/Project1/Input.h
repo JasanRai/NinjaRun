@@ -23,6 +23,11 @@ public:
 		SOUNDON,
 		SOUNDOFF,
 
+		EASY,
+		NORMAL,
+		HARD,
+		
+
 		SHOW_CREDITS,
 
 		DEBUG_SHOW_IDS

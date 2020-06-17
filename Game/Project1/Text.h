@@ -3,10 +3,10 @@
 #include "SDL.h"
 
 #include "Texture.h"
-#include "asset.h"
+#include "Asset.h"
 #include "Vector_2D.h"
 
-class Text : public asset
+class Text : public Asset
 {
 public :
 	Text(SDL_Renderer* renderer, const char* text, SDL_Color, std::string id);

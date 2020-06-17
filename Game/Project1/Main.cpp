@@ -2,14 +2,15 @@
 #include <chrono>
 #include <thread>
 
-#include "engine.h"
+#include "Engine.h"
 #include "Game_Scene.h"
 #include "Scene.h"
 #include "Assets.h"
 #include "Input.h"
-#include "game_object.h"
+#include "Game_Object.h"
 #include "Editor.h"
 #include "Configuration.h"
+#include "Player.h"
 
 int main(void)
 {
@@ -23,11 +24,12 @@ int main(void)
 
 	
 	Configuration* config = new Configuration();
-	engine* eng= new engine("Game", config);
+	Engine* eng= new Engine("Game", config);
 	Assets* assets = new Assets(eng->renderer());
 	Input* input = new Input();
 	Scene* game_scene = new Game_Scene();
 	Editor* editor = new Editor(L"Game");
+	
 	
 
 
@@ -47,10 +49,15 @@ int main(void)
 		editor->update(input, game_scene, config);
 		eng->simulate(previous_frame_duration, assets, game_scene, input, config);
 
-		if (input->is_button_state(Input::Button::UP, Input::Button_State::PRESSED))
+		/*std::vector<Game_Object*> game_objects = game_scene->get_game_objects();
+		for (Game_Object* game_object : game_objects)
 		{
-			std::cout << "UP PRESSED" << std::endl;
-		}
+			if (game_object->to_be_destroyed())
+			{
+				game_scene->remove_game_object(game_object->id());
+				delete game_object;
+			}
+		}*/
 
 		const Uint32 current_time_ms = SDL_GetTicks();
 		const Uint32 frame_duration_ms = current_time_ms - frame_start_time_ms;

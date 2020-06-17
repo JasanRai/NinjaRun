@@ -6,11 +6,11 @@
 #include "Input.h"
 #include "Configuration.h"
 
-class engine
+class Engine
 {
 public:
-	engine(std::string window_name, Configuration* config);
-	~engine();
+	Engine(std::string window_name, Configuration* config);
+	~Engine();
 
 	void simulate(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Input* input, Configuration* config);
 

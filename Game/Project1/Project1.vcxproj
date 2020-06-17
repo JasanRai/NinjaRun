@@ -149,15 +149,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="animated_texture.cpp" />
-    <ClCompile Include="asset.cpp" />
+    <ClCompile Include="Animated_Texture.cpp" />
+    <ClCompile Include="Asset.cpp" />
     <ClCompile Include="Assets.cpp" />
-    <ClCompile Include="background.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Circle_2D.cpp" />
     <ClCompile Include="NinjaGirl.cpp" />
     <ClCompile Include="Editor.cpp" />
-    <ClCompile Include="engine.cpp" />
-    <ClCompile Include="game_object.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Game_Object.cpp" />
     <ClCompile Include="Game_Scene.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -169,20 +169,20 @@
     <ClCompile Include="Vector_2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animated_texture.h" />
-    <ClInclude Include="asset.h" />
+    <ClInclude Include="Animated_Texture.h" />
+    <ClInclude Include="Asset.h" />
     <ClInclude Include="Assets.h" />
-    <ClInclude Include="background.h" />
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Circle_2D.h" />
     <ClInclude Include="NinjaGirl.h" />
     <ClInclude Include="Editor.h" />
-    <ClInclude Include="engine.h" />
-    <ClInclude Include="game_object.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Game_Object.h" />
     <ClInclude Include="Game_Scene.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Text.h" />

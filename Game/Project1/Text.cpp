@@ -4,7 +4,7 @@
 #include <iostream>
 
 Text::Text(SDL_Renderer* renderer, const char* text, SDL_Color color, std::string id)
-	:asset(id)
+	:Asset(id)
 {
 	TTF_Font* font = TTF_OpenFont("Game/Project1/Assets/comicz.ttf", 15);
 	if (font == nullptr)

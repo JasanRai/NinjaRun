@@ -1,15 +1,15 @@
-#include "asset.h"
+#include "Asset.h"
 
-asset::asset(std::string id)
+Asset::Asset(std::string id)
 {
 	_id = id;
 }
 
-asset::~asset()
+Asset::~Asset()
 {
 }
 
-std::string asset::id()
+std::string Asset::id()
 {
 	return _id;
 }

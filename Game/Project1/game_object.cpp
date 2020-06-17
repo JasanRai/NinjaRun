@@ -4,11 +4,12 @@
 #include "Circle_2D.h"
 
 
-game_object::game_object(std::string id, std::string texture_id)
+Game_Object::Game_Object(std::string id, std::string texture_id)
 	:_translation(0,0), _velocity(0,0), _collider(0.0f, Vector_2D(0.f, 0.f))
 {
 	_id = id;
 	_texture_id = texture_id;
+	_to_be_destroyed = false;
 
 	/*_x = 0;
 	_y = 0;*/
@@ -19,23 +20,23 @@ game_object::game_object(std::string id, std::string texture_id)
 	_flip = SDL_FLIP_NONE;
 }
 
-game_object::~game_object()
+Game_Object::~Game_Object()
 {
 }
 
-std::string game_object::id()
+std::string Game_Object::id()
 {
 	return _id;
 }
 
-void game_object::simulate_physics(Uint32 milliseconds_to_simulate, Assets*, Scene* scene)
+void Game_Object::simulate_physics(Uint32 milliseconds_to_simulate, Assets*, Scene* scene)
 {
 	Vector_2D velocity = _velocity;
 	velocity.scale((float)milliseconds_to_simulate);
 
 	_translation += velocity;
 
-	for (game_object* Game_object : scene->get_game_objects())
+	for (Game_Object* Game_object : scene->get_game_objects())
 	{
 		if (Game_object->id() == _id)
 		{
@@ -61,7 +62,7 @@ void game_object::simulate_physics(Uint32 milliseconds_to_simulate, Assets*, Sce
 	}
 }
 
-void game_object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configuration* config, Scene* scene)
+void Game_Object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configuration* config, Scene* scene)
 {
 
 	SDL_Rect destination;
@@ -115,30 +116,41 @@ void game_object::render(Uint32, Assets* assets, SDL_Renderer* renderer, Configu
 
 }
 
-Vector_2D game_object::translation()
+Vector_2D Game_Object::translation()
 {
 	return _translation;
 }
 
-Circle_2D game_object::collider()
+Circle_2D Game_Object::collider()
 {
 	return _collider;
 }
 
 
-int game_object::height()
+int Game_Object::height()
 {
 	return _height;
 }
 
-int game_object::width()
+int Game_Object::width()
 {
 	return _width;
 }
 
-void game_object::set_translation(Vector_2D translation)
+bool Game_Object::to_be_destroyed()
+{
+	return _to_be_destroyed;
+}
+
+void Game_Object::set_translation(Vector_2D translation)
 {
 	_translation = translation;
+}
+
+void Game_Object::set_velocity(Vector_2D velocity)
+{
+	_velocity = velocity;
+
 }
 
 

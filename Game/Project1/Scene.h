@@ -8,7 +8,7 @@
 
 #include "SDL.h"
 
-class game_object;
+class Game_Object;
 
 class Scene
 {
@@ -18,15 +18,18 @@ public:
 
 	virtual void update(SDL_Window* window) = 0;
 
-	game_object* get_game_object(std::string id);
-	std::vector<game_object*> get_game_objects();
+	Game_Object* get_game_object(std::string id);
+	std::vector<Game_Object*> get_game_objects();
+
+	void add_game_object(Game_Object* game_object);
+	void remove_game_object(std::string id);
 
 	Vector_2D camera_translation();
 
 	std::string id();
 
 protected:
-	std::map<std::string, game_object*> _game_objects;
+	std::map<std::string, Game_Object*> _game_objects;
 	std::string _id;
 	Vector_2D _camera_translation;
 

@@ -3,18 +3,18 @@
 #include "SDL.h"
 #include <string>
 #include "Input.h"
-#include "assets.h"
+#include "Assets.h"
 #include "Vector_2D.h"
 #include "Configuration.h"
 #include "Circle_2D.h"
 #include "Scene.h"
 
 
-class game_object
+class Game_Object
 {
 public :
-	game_object(std::string id, std::string texture_id);
-	~game_object();
+	Game_Object(std::string id, std::string texture_id);
+	~Game_Object();
 
 	std::string id();
 
@@ -28,8 +28,10 @@ public :
 
 	int height();
 	int width();
+	bool to_be_destroyed();
 
 	void set_translation(Vector_2D translation);
+	void set_velocity(Vector_2D velocity);
 
 protected:
 	std::string _id;
@@ -49,6 +51,8 @@ protected:
 	int _height;
 
 	SDL_RendererFlip _flip;
+
+	bool _to_be_destroyed;
 
 };
 

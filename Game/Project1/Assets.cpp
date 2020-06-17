@@ -1,6 +1,6 @@
 #include "Assets.h"
-#include "animated_texture.h"
-#include "texture.h"
+#include "Animated_Texture.h"
+#include "Texture.h"
 #include "Sound.h"
 
 #include <iostream>
@@ -8,26 +8,26 @@
 Assets::Assets(SDL_Renderer* renderer)
 {
 	{
-		Texture* texture = new Texture("Texture.NinjaGirl", "../Assets/NinjaGirl/ninjagirl.png", renderer);
-		_assets[texture -> id()] = texture;
+		Texture* texture = new Texture("Texture.background", "../Assets/background.png", renderer);
+		_assets[texture->id()] = texture;
 	}
 	{
-		Texture* texture = new Texture("Texture.background", "../Assets/background.png", renderer);
+		Texture* texture = new Texture("Texture.ground", "../Assets/ground.png", renderer);
 		_assets[texture->id()] = texture;
 	}
 
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
-		animated_texture* texture = new animated_texture("Texture.NinjaGirlRun","../Assets/NinjaGirl/ninjagirlrun.png", renderer,
-			frame_count, frame_duration_milliseconds);
-		_assets[texture->id()] = texture;
+		Animated_Texture* running_ninjagirl_texture = new Animated_Texture("Texture.NinjaGirl","../Assets/NinjaGirl/ninjagirlrun.png", renderer,
+		frame_count, frame_duration_milliseconds);
+		_assets[running_ninjagirl_texture->id()] = running_ninjagirl_texture;
 	}
 	
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* player_animated_texture = new animated_texture("Texture.Ninja.walking", "../Assets/Ninja/NinjaWalk.png", renderer,
+		Asset* player_animated_texture = new Animated_Texture("Texture.Ninja.walking", "../Assets/Ninja/NinjaWalk.png", renderer,
 			frame_count, frame_duration_milliseconds);
 		_assets[player_animated_texture->id()] = player_animated_texture;
 	}
@@ -35,7 +35,7 @@ Assets::Assets(SDL_Renderer* renderer)
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* player_animated_texture = new animated_texture("Texture.Ninja.slide", "../Assets/Ninja/NinjaSlide.png", renderer,
+		Asset* player_animated_texture = new Animated_Texture("Texture.Ninja.slide", "../Assets/Ninja/NinjaSlide.png", renderer,
 			frame_count, frame_duration_milliseconds);
 		_assets[player_animated_texture->id()] = player_animated_texture;
 	}
@@ -43,7 +43,7 @@ Assets::Assets(SDL_Renderer* renderer)
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* player_animated_texture = new animated_texture("Texture.Ninja.jump", "../Assets/Ninja/NinjaJump.png", renderer,
+		Asset* player_animated_texture = new Animated_Texture("Texture.Ninja.jump", "../Assets/Ninja/NinjaJump.png", renderer,
 			frame_count, frame_duration_milliseconds);
 		_assets[player_animated_texture->id()] = player_animated_texture;
 	}
@@ -51,7 +51,7 @@ Assets::Assets(SDL_Renderer* renderer)
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* player_animated_texture = new animated_texture("Texture.Ninja.idle", "../Assets/Ninja/NinjaIdle.png", renderer,
+		Asset* player_animated_texture = new Animated_Texture("Texture.Ninja.idle", "../Assets/Ninja/NinjaIdle.png", renderer,
 			frame_count, frame_duration_milliseconds);
 		_assets[player_animated_texture->id()] = player_animated_texture;
 	}
@@ -59,7 +59,7 @@ Assets::Assets(SDL_Renderer* renderer)
 	{
 		const int frame_count = 10;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* player_animated_texture = new animated_texture("Texture.Ninja.attack", "../Assets/Ninja/ninjaAttk.png", renderer,
+		Asset* player_animated_texture = new Animated_Texture("Texture.Ninja.attack", "../Assets/Ninja/ninjaAttk.png", renderer,
 			frame_count, frame_duration_milliseconds);
 		_assets[player_animated_texture->id()] = player_animated_texture;
 	}
@@ -92,14 +92,14 @@ Assets::Assets(SDL_Renderer* renderer)
 	{
 		const int frame_count = 8;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* Animated_texture = new animated_texture("Texture.portal.entry", "../Assets/portal.green.png", renderer, frame_count, frame_duration_milliseconds);
+		Asset* Animated_texture = new Animated_Texture("Texture.portal.entry", "../Assets/portal.green.png", renderer, frame_count, frame_duration_milliseconds);
 		_assets[Animated_texture->id()] = Animated_texture;
 	}
 
 	{
 		const int frame_count = 8;
 		const Uint32 frame_duration_milliseconds = 100;
-		asset* Animated_texture = new animated_texture("Texture.portal.exit", "../Assets/portal.purple.png", renderer, frame_count, frame_duration_milliseconds);
+		Asset* Animated_texture = new Animated_Texture("Texture.portal.exit", "../Assets/portal.purple.png", renderer, frame_count, frame_duration_milliseconds);
 		_assets[Animated_texture->id()] = Animated_texture;
 	}
 }
@@ -118,7 +118,7 @@ Texture* Assets::get_texture(std::string id)
 	return _textures[id];
 }
 
-animated_texture* Assets::get_animated_texture(std::string id)
+Animated_Texture* Assets::get_animated_texture(std::string id)
 {
 	if (_animated_textures.find(id) == _animated_textures.end())
 	{
@@ -128,7 +128,7 @@ animated_texture* Assets::get_animated_texture(std::string id)
 	return _animated_textures[id];
 }
 
-asset* Assets::get_asset(std::string id)
+Asset* Assets::get_asset(std::string id)
 {
 	if (_assets.find(id) == _assets.end())
 	{

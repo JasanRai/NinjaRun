@@ -1,11 +1,12 @@
 #include "Input.h"
-#include "resource.h"
+
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
 #include "SDL_syswm.h"
 
 #include <iostream>
+#include "Resource.h"
 
 Input::Input()
 {
@@ -19,6 +20,9 @@ void Input::get_input()
 {
 	_button_state[Button::SOUNDOFF] = Button_State::UP;
 	_button_state[Button::SOUNDON] = Button_State::UP;
+	_button_state[Button::NORMAL] = Button_State::UP;
+	_button_state[Button::EASY] = Button_State::UP;
+	_button_state[Button::HARD] = Button_State::UP;
 
 
 	for (auto button_state : _button_state)
@@ -53,6 +57,21 @@ void Input::get_input()
 			else if (event.syswm.msg->msg.win.wParam == ID_AUDIOOPTION_SOUNDON)
 			{
 				_button_state[Button::SOUNDON] = Button_State::PRESSED;
+			}
+			else if (event.syswm.msg->msg.win.wParam == ID_DIFFICULTYLEVEL_EASY)
+			{
+				_button_state[Button::EASY] = Button_State::PRESSED;
+				
+			}
+			else if (event.syswm.msg->msg.win.wParam == ID_DIFFICULTYLEVEL_NORMAL)
+			{
+				_button_state[Button::NORMAL] = Button_State::PRESSED;
+
+			}
+			else if (event.syswm.msg->msg.win.wParam == ID_DIFFICULTYLEVEL_HARD)
+			{
+				_button_state[Button::HARD] = Button_State::PRESSED;
+
 			}
 			break;
 		

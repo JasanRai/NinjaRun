@@ -3,14 +3,14 @@
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
 #include "Texture.h"
-#include "asset.h"
+#include "Asset.h"
 
-class animated_texture : public Texture
+class Animated_Texture : public Texture
 {
 
 public:
-	animated_texture(std::string id, std::string path, SDL_Renderer* renderer, int frame_count, Uint32 frame_duration_milliseconds);
-	~animated_texture();
+	Animated_Texture(std::string id, std::string path, SDL_Renderer* renderer, int frame_count, Uint32 frame_duration_milliseconds);
+	~Animated_Texture();
 
 	void update_frame(Uint32 milliseconds_to_simulate);
 	void render(SDL_Renderer* renderer, SDL_Rect* clip, SDL_Rect* destination, SDL_RendererFlip flip) override;

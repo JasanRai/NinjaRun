@@ -1,4 +1,4 @@
-#include "engine.h"
+#include "Engine.h"
 #include <iostream>
 
 #define SDL_MAIN_HANDLED
@@ -9,16 +9,14 @@
 #include <SDL_mixer.h>
 
 #include "Texture.h"
-#include "animated_texture.h"
+#include "Animated_Texture.h"
 
 #include <algorithm>
-#include "game_object.h"
+#include "Game_Object.h"
 #include "Configuration.h"
 
 
-
-
-engine::engine(std::string window_name, Configuration* config)
+Engine::Engine(std::string window_name, Configuration* config)
 {
 	const int init_result = SDL_Init(SDL_INIT_EVERYTHING);
 	const int init_result_success = 0;
@@ -89,12 +87,12 @@ engine::engine(std::string window_name, Configuration* config)
 
 }
 
-engine::~engine()
+Engine::~Engine()
 {
 
 }
 
-void engine::simulate(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Input* input, Configuration* config)
+void Engine::simulate(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Input* input, Configuration* config)
 {
 	simulate_AI(milliseconds_to_simulate, assets, scene, input);
 	simulate_physics(milliseconds_to_simulate, assets, scene);
@@ -102,27 +100,27 @@ void engine::simulate(Uint32 milliseconds_to_simulate, Assets* assets, Scene* sc
 
 }
 
-void engine::simulate_AI(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Input* input)
+void Engine::simulate_AI(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Input* input)
 {
-	std::vector<game_object*> game_objects = scene->get_game_objects();
-	for (game_object* game_object : game_objects)
+	std::vector<Game_Object*> game_objects = scene->get_game_objects();
+	for (Game_Object* game_object : game_objects)
 	{
 		game_object->simulate_AI(milliseconds_to_simulate, assets, input, scene);
 	}
 }
 
-void engine::simulate_physics(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene)
+void Engine::simulate_physics(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene)
 {
 
-	std::vector<game_object*> game_objects = scene->get_game_objects();
-	for (game_object* game_object : game_objects)
+	std::vector<Game_Object*> game_objects = scene->get_game_objects();
+	for (Game_Object* game_object : game_objects)
 	{
 		game_object->simulate_physics(milliseconds_to_simulate, assets, scene);
 	}
 
 }
 
-void engine::render(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Configuration* config)
+void Engine::render(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scene, Configuration* config)
 {
 	const int render_clear_success = 0;
 	const int render_clear_result = SDL_RenderClear(_renderer);
@@ -147,31 +145,30 @@ void engine::render(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scen
 	}
 
 
-	{
-		/*Texture* dino = (Texture*)assets->get_asset("Texture.Dino");
-		SDL_Rect destination;
+	//{
+	//	Animated_Texture* running_ninjagirl_texture = assets->get_animated_texture("Texture.NinjaGirl");
 
-		destination.x = 50;
-		destination.y = 50;
-		destination.w = 100;
-		destination.h = 100;
-		dino->render(_renderer, nullptr, &destination, SDL_FLIP_NONE);*/
+	//	running_ninjagirl_texture ->update_frame(milliseconds_to_simulate);
 
-		/*dino* Dino = new dino("Dino");
-		Dino->render(milliseconds_to_simulate, assets, _renderer);*/
-	}
+	//	SDL_Rect destination;
+	//	destination.x = 150;
+	//	destination.y = 50;
+	//	destination.w = 100;
+	//	destination.h = 100;
+	//	running_ninjagirl_texture->render(_renderer, nullptr, &destination, SDL_FLIP_NONE);
+	//}
 
-	std::vector<game_object*>sorted_game_objects = scene->get_game_objects();
+	std::vector<Game_Object*>sorted_game_objects = scene->get_game_objects();
 	const struct
 	{
-		bool operator()(game_object* a, game_object* b)
+		bool operator()(Game_Object* a, Game_Object* b)
 		{
 			return a->translation().y() < b->translation().y();
 		}
 	} sort_by_y_order;
 
 	std::sort(sorted_game_objects.begin(), sorted_game_objects.end(), sort_by_y_order);
-	for (game_object* game_object : sorted_game_objects)
+	for (Game_Object* game_object : sorted_game_objects)
 	{
 		game_object->render(milliseconds_to_simulate, assets, _renderer, config, scene);
 	}
@@ -179,12 +176,12 @@ void engine::render(Uint32 milliseconds_to_simulate, Assets* assets, Scene* scen
 	SDL_RenderPresent(_renderer);
 }	
 	
-SDL_Renderer* engine::renderer()
+SDL_Renderer* Engine::renderer()
 {
 	return _renderer;
 }
 
-SDL_Window* engine::window()
+SDL_Window* Engine::window()
 {
 	return _window;
 }

@@ -2,11 +2,11 @@
 
 #include <string>
 
-class asset
+class Asset
 {
 public :
-	asset(std::string id);
-	~asset();
+	Asset(std::string id);
+	~Asset();
 
 	std::string id();
 

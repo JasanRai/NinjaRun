@@ -1,9 +1,11 @@
 #include "Texture.h"
 #include "SDL_image.h"
 #include <iostream>
+#include "Engine.h"
+#include "SDL.h"
 
 Texture::Texture(std::string id, std::string path, SDL_Renderer* renderer)
-	: asset(id)
+	: Asset(id)
 {
 	SDL_Surface* surface = nullptr;
 	if (path.find("bmp") != std::string::npos)
@@ -47,6 +49,7 @@ SDL_Texture* Texture::data()
 {
 	return _data;
 }
+
 
 void Texture::render(SDL_Renderer* renderer, SDL_Rect* clip, SDL_Rect* destination, SDL_RendererFlip flip)
 {

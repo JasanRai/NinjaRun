@@ -1,8 +1,8 @@
-#include "animated_texture.h"
+#include "Animated_Texture.h"
 
 
 
-animated_texture::animated_texture(std::string id, std::string path, SDL_Renderer* renderer, int frame_count, Uint32 frame_duration_milliseconds)
+Animated_Texture::Animated_Texture(std::string id, std::string path, SDL_Renderer* renderer, int frame_count, Uint32 frame_duration_milliseconds)
 	: Texture(id, path, renderer)
 {
 	_frame_count = frame_count;
@@ -12,17 +12,17 @@ animated_texture::animated_texture(std::string id, std::string path, SDL_Rendere
 
 }
 
-animated_texture::~animated_texture()
+Animated_Texture::~Animated_Texture()
 {
 }
 
-void animated_texture::update_frame(Uint32 milliseconds_to_simulate)
+void Animated_Texture::update_frame(Uint32 milliseconds_to_simulate)
 {
 	_total_time_milliseconds += milliseconds_to_simulate;
 	_current_frame = (_total_time_milliseconds / _frame_duration_milliseconds) % _frame_count;
 }
 
-void animated_texture::render(SDL_Renderer* renderer, SDL_Rect*, SDL_Rect* destination, SDL_RendererFlip flip)
+void Animated_Texture::render(SDL_Renderer* renderer, SDL_Rect*, SDL_Rect* destination, SDL_RendererFlip flip)
 {
 	int texture_w = 0;
 	int texture_h = 0;

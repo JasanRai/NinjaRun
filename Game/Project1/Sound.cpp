@@ -4,7 +4,7 @@
 #include <iostream>
 
 Sound::Sound(std::string id, std::string path)
-	:asset(id)
+	:Asset(id)
 {
 
 	_data = Mix_LoadWAV(path.c_str());

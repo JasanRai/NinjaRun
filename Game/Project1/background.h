@@ -1,13 +1,18 @@
 #pragma once
-#include "game_object.h"
+#include "Game_Object.h"
 
-class background : public game_object
+
+class Background : public Game_Object
 {
 
 public:
-	background(std::string id);
-	~background();
+	Background(std::string id);
+	~Background();
+
+
 
 	virtual void simulate_AI(Uint32 milliseconds_to_simulate, Assets* assets, Input* input, Scene* scene) override;
+
+
 };
 

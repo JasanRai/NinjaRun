@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Scene.h"
-#include "game_object.h"
+#include "Game_Object.h"
 
 class Game_Scene : public Scene
 {
